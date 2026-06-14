@@ -359,9 +359,167 @@ with open("output.json", "w", encoding="utf-8") as f:
 
 ## 今天动手练习
 
-打开 VS Code 或者直接在命令行 `python` 交互模式，逐块敲一遍上面这些代码。
+每题都自己敲，不要复制粘贴。全部能跑通就算学会。
 
-验证自己会了的标志：
-1. 不看笔记，能写出一个函数 `read_json_file(path)`，读 JSON 文件返回 dict
-2. 能用列表推导式生成 1-100 的平方数列表
-3. 能写 for 循环遍历字典
+---
+
+### 练习1：数据类型 + f-string
+
+```python
+# 创建3个变量：姓名、年龄、身高，然后用 f-string 打印一句话
+# 输出示例："我叫张三，今年25岁，身高1.75米"
+```
+name = "张三"
+age = 25
+height = 1.75
+print(f"我叫{name},今年{age}岁，身高{height}米")
+---
+
+### 练习2：if/elif/else
+
+```python
+# 写一个函数 check_score(score)
+# >= 90 打印"优秀"
+# >= 80 打印"良好"  
+# >= 60 打印"及格"
+# < 60 打印"不及格"
+# 调3次验证：check_score(95)、check_score(70)、check_score(55)
+```
+def check_score(score):
+    if score >= 90:
+        print("优秀")
+    elif score >=80:
+        print("良好")
+    elif score >= 60:
+        print("及格")
+    else:
+        print("不及格")
+check_score(95)
+check_score(70)
+check_score(55)
+---
+
+### 练习3：列表操作
+
+有一个列表 `numbers = [3, 7, 1, 9, 2, 8, 4, 6, 5, 0]`，依次完成：
+- 在末尾添加数字 10
+- 删除数字 0
+- 把第1个元素改为 33
+- 打印排序后的结果
+- 用列表推导式，生成一个新列表只包含大于 5 的数字
+- 打印新列表和它的长度
+
+numbers.append(10)
+numbers.remove(0)
+numbers[0]=33
+numbers.sort()
+print(numbers)
+
+filtered = [x for x in numbers if x > 5]
+print(filtered)
+print(len(squares))
+---
+
+### 练习4：字典操作
+
+```python
+# 创建字典 student = {"name": "小明", "age": 20, "score": 85, "city": "上海"}
+# 把 score 改成 92
+# 新增 email 为 "xiaoming@test.com"
+# 删除 city
+# 用 for 循环遍历打印所有键值对，格式：key: value
+```
+student = {"name": "小明", "age": 20, "score": 85, "city": "上海"}
+student["score"] = 92
+student["email"] = "xiaoming@test.com"
+student.pop("city")
+for key, value in student.items():
+    print(f"{key}: {value}")
+---
+
+### 练习5：函数
+
+```python
+# 写一个函数 login_test(username, password, expected_result)
+# expected_result 取值 "pass" 或 "fail"
+# 当 username="admin" 且 password="123456" 时登录成功
+
+# 调用要求：
+# login_test("admin", "123456", "pass")   → 打印"用例通过"
+# login_test("admin", "wrong", "fail")    → 打印"用例通过"
+# login_test("admin", "123456", "fail")   → 打印"用例失败：期望登录失败，实际登录成功"
+```
+def login_test(username, password, expected_result):
+    if username == "admin" and password == "123456":
+        actual_result = "pass"
+    else:
+        actual_result = "fail"
+    
+    if actual_result == expected_result:
+        print("用例通过")
+    else:
+        print(f"用例失败：期望登录{expected_result}，实际登录{actual_result}")
+---
+
+### 练习6：文件读写
+
+```python
+# 写一个函数 write_and_read(filename, content)
+# 把 content 写入 filename
+# 再从 filename 读出来，返回读到的内容
+# 用 with open 写，别手动 close
+```
+def write_and_read(filename, content):
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+    with open(filename, "r", encoding="utf-8") as f:
+        return f.read()
+---
+
+### 练习7：json 模块
+
+先在同一目录下创建一个 `test.json` 文件，内容：
+
+```json
+[{"id": 1, "name": "张三", "score": 88},
+ {"id": 2, "name": "李四", "score": 92},
+ {"id": 3, "name": "王五", "score": 76}]
+```
+
+然后写代码完成：
+- 用 `json.load()` 读这个文件
+- 遍历列表，打印所有 `name` 字段
+- 筛选出 score >= 80 的人，用 `json.dump()` 写到 `pass.json`，带 `indent=2`
+import json
+with open("test.json" , "r" , encoding = "utf-8") as f:
+    data = json.load(f)
+for item in data:
+    print(item["name"])
+passed = [x for x in data if x["score"] >=80]
+with open("pass.json" , "w" , encoding = "utf-8") as f:
+    json.dump(passed , f , ensure_ascii=False , indent = 2)
+
+---
+
+### 练习8：try/except
+
+```python
+# 写一个函数 safe_divide(a, b)
+# 返回 a / b 的结果
+# 如果 b 是 0，返回 "除数不能为零"
+# 如果 a 或 b 不是数字，返回 "请输入数字"
+```
+def safe_divide(a, b):
+    if not isinstance(a,(int , float)) or not isinstance(b,(int , float)):
+        return("请输入数字")
+    elif b == 0:
+        return("除数不能为零")
+    else:
+        return(a/b)
+    
+
+---
+
+### 能跑通就算过关 ✅
+
+把这 8 个练习写到一个 `day6_practice.py` 文件里，放到 `Python练习/` 目录下。全部跑通之后再标学习检查里的勾。
