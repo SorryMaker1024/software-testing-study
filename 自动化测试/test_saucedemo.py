@@ -120,3 +120,10 @@ def test_login_multi(driver, username, password, should_pass):
     else:
         # 不管什么错，反正不应该跳到商品页
         assert "inventory" not in driver.current_url, f"{username} 不应该能登录"
+
+
+# ==========================================
+# 让 pytest 文件也能直接点运行
+# ==========================================
+if __name__ == "__main__":
+    pytest.main(["-v", __file__])
