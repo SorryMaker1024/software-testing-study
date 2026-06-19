@@ -42,6 +42,10 @@ print(f"5. CSS .class    → {btn5.get_attribute('value')}")
 btn6 = driver.find_element(By.XPATH, "//input[@id='login-button']")
 print(f"6. XPATH         → {btn6.get_attribute('value')}")
 
+# btn7 = driver.find_element(By.XPATH, "//input[@class='submit-button btn_action']")
+# print(f"7. XPATH         → {btn7.get_attribute('value')}") 脆弱 不如用//input[contains(@class, 'submit-button')]
+
+
 # ==========================================
 # 练习2：元素操作 — 输入、清空、点击、读取
 # ==========================================
