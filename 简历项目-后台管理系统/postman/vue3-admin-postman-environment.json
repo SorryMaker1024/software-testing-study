@@ -1,0 +1,23 @@
+{
+  "name": "vue3-element-admin 本地环境",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3002/dev-api/api/v1",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "captchaKey",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ]
+}
